@@ -1,0 +1,20 @@
+# Vim
+[._]*.sw[a-p]
+*~
+
+# helps ripgrep not be silly
+.git
+
+# ERB result files
+cron/crontab
+containers/livla/Dockerfile
+containers/1chat/Dockerfile
+containers/fazabot/Dockerfile
+
+# Don't check in secrets
+secrets
+
+# Sub-gits and data files
+containers/livla/src/
+containers/1chat/src/
+containers/fazabot/src/

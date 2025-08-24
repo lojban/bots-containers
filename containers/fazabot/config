@@ -1,0 +1,6 @@
+description='fazabot???'
+needs_network=true
+name=fazabot
+version=1
+run_args='-v $containerdir/src/src:/fazabot/src/ -v $containerdir/src/config:/fazabot/config/ -v $containerdir/src/dist:/fazabot/dist/'
+run_program='yarn start'

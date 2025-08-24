@@ -1,0 +1,6 @@
+description='livla/mensi chat bot'
+needs_network=true
+name=livla
+version=1
+run_args='-v $containerdir/src/src:/livla/src/ -v $containerdir/src/config:/livla/config/ -v $containerdir/src/build:/livla/build/'
+run_program='pm2-runtime /livla/src/livla/index.js'
