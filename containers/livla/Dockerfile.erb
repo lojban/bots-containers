@@ -10,16 +10,15 @@ ENV TZ=Etc/UTC
 
 # get install script and pass it to execute:
 RUN apt-get update && apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 # and install node
 RUN apt-get update && apt-get install -y build-essential \
     software-properties-common vim python3 python3-dev nodejs rsync
 
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN mkdir -p /livla/build/dumps
-RUN mkdir -p /livla/.pm2/logs
 COPY ./containers/livla/src/src/package.json ./containers/livla/src/src/pnpm-lock.yaml /livla/
 COPY ./containers/livla/src/src/tsconfig.json /livla/
 WORKDIR /livla
-RUN pnpm install --frozen-lockfile && pnpm add -g npm-check-updates pm2@latest typescript
+RUN pnpm install --frozen-lockfile
 RUN chown -R <%= userid %>:<%= groupid %> /livla
