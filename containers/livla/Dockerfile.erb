@@ -21,4 +21,5 @@ COPY ./containers/livla/src/src/package.json ./containers/livla/src/src/pnpm-loc
 COPY ./containers/livla/src/src/tsconfig.json /livla/
 WORKDIR /livla
 RUN pnpm install --frozen-lockfile
+RUN npm install -g pm2
 RUN chown -R <%= userid %>:<%= groupid %> /livla
