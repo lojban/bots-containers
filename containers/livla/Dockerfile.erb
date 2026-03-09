@@ -15,10 +15,11 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
 RUN apt-get update && apt-get install -y build-essential \
     software-properties-common vim python3 python3-dev nodejs rsync
 
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 RUN mkdir -p /livla/build/dumps
 RUN mkdir -p /livla/.pm2/logs
-COPY ./containers/livla/src/src/package*.json /livla/
+COPY ./containers/livla/src/src/package.json ./containers/livla/src/src/pnpm-lock.yaml /livla/
 COPY ./containers/livla/src/src/tsconfig.json /livla/
 WORKDIR /livla
-RUN npm i --force ; npm i -g npm-check-updates pm2@latest typescript
+RUN pnpm install --frozen-lockfile && pnpm add -g npm-check-updates pm2@latest typescript
 RUN chown -R <%= userid %>:<%= groupid %> /livla
