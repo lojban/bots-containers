@@ -3,4 +3,4 @@ needs_network=true
 name=1chat
 version=1
 run_args='-v $containerdir/src/src:/home/app/1chat/src/ -v $containerdir/src/dist:/home/app/1chat/dist/ -v $containerdir/src/data:/home/app/1chat/data/ -v $containerdir/src/default-config:/home/app/1chat/default-config/'
-run_program='bash -c "yarn run tsc && yarn start"'
+run_program='bash -c "pnpm run tsc && pnpm start"'
